@@ -38,14 +38,18 @@ namespace MixERP.Net.VCards.Lookups
             return result;
         }
 
-        public static TelephoneType Parse(string type)
+        public static IEnumerable<TelephoneType> Parse(string type)
         {
             if (string.IsNullOrWhiteSpace(type))
             {
-                return TelephoneType.Preferred;
+                return new []{TelephoneType.Preferred};
             }
 
-            return Lookup.FirstOrDefault(x => string.Equals(x.Value, type, StringComparison.OrdinalIgnoreCase)).Key;
+            return new[]
+            {
+                Lookup.FirstOrDefault(x => string.Equals(x.Value, type, StringComparison.OrdinalIgnoreCase))
+                    .Key
+            };
         }
     }
 }

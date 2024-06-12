@@ -20,7 +20,8 @@ namespace MixERP.Net.VCards.Lookups
             {EmailType.PowerShare, "POWERSHARE"},
             {EmailType.Prodigy, "PRODIGY"},
             {EmailType.Telex, "TLX"},
-            {EmailType.X400, "X400"}
+            {EmailType.X400, "X400"},
+            {EmailType.Internet, "INTERNET"}
         };
 
         public static string ToVCardString(this EmailType type)

@@ -21,7 +21,7 @@ namespace MixERP.Net.VCards.Processors
                 return string.Empty;
             }
 
-            return UrlProcessor.SerializeUris(vcard.CalendarUserAddresses, "CALADRURI", vcard.Version);
+            return UrlProcessor.SerializeLinks(vcard.CalendarUserAddresses, "CALADRURI", vcard.Version);
         }
 
         public static void Parse(Token token, ref VCard vcard)
@@ -34,8 +34,8 @@ namespace MixERP.Net.VCards.Processors
 
             var uri = new Uri(value, UriKind.RelativeOrAbsolute);
 
-            var urls = (List<Uri>)vcard.CalendarUserAddresses ?? new List<Uri>();
-            urls.Add(uri);
+            var urls = (List<Link>)vcard.CalendarUserAddresses ?? new List<Link>();
+            urls.Add(new Link { Url = uri });
             vcard.CalendarUserAddresses = urls;
         }
     }
