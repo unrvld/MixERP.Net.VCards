@@ -9,7 +9,7 @@ namespace MixERP.Net.VCards.Processors
         {
             if ((vcard.Version == VCardVersion.V2_1 && vcard.Version == VCardVersion.V3) || string.IsNullOrWhiteSpace(vcard.SortString))
             {
-                return GroupProcessor.Serialize("N", vcard.Version, string.Empty, true, vcard.LastName, vcard.FirstName, vcard.MiddleName, vcard.Prefix, vcard.Suffix);
+                return GroupProcessor.Serialize("N", vcard.Version, string.Empty, encoding: vcard.Encoding, charset:vcard.Charset,true, vcard.LastName, vcard.FirstName, vcard.MiddleName, vcard.Prefix, vcard.Suffix);
             }
 
             /*****************************************************************
@@ -33,7 +33,9 @@ namespace MixERP.Net.VCards.Processors
             string key = "N;SORT-AS=\"{sortAs}\"";
             key = key.Replace("{sortAs}", vcard.SortString);
 
-            return GroupProcessor.Serialize(key, vcard.Version, string.Empty, true, vcard.LastName, vcard.FirstName, vcard.MiddleName, vcard.Prefix, vcard.Suffix);
+            return GroupProcessor.Serialize(key, vcard.Version, string.Empty, encoding: vcard.Encoding,
+                charset: vcard.Charset, true, vcard.LastName, vcard.FirstName, vcard.MiddleName, vcard.Prefix,
+                vcard.Suffix);
         }
 
         public static void Parse(Token token, ref VCard vcard)

@@ -38,7 +38,8 @@ namespace MixERP.Net.VCards.Processors
                     }
                 }
 
-                builder.Append(GroupProcessor.Serialize(key, vcard.Version, type, true, email.EmailAddress));
+                builder.Append(GroupProcessor.Serialize(key, vcard.Version, type, encoding:vcard.Encoding, charset:vcard.Charset,true,
+                    email.EmailAddress));
             }
 
             return builder.ToString();

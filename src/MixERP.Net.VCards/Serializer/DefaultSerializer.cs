@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Text;
 using MixERP.Net.VCards.Extensions;
 using MixERP.Net.VCards.Types;
 
@@ -7,13 +8,13 @@ namespace MixERP.Net.VCards.Serializer
 {
     public static class DefaultSerializer
     {
-        public static string GetVCardString(string key, string value, bool mustEscape, VCardVersion version, string type = "", string encoding = "")
+        public static string GetVCardString(string key, string value, bool mustEscape, VCardVersion version, Encoding encoding, Encoding charset, string type = "")
         {
             string[] types = {type};
-            return GetVCardString(key, value, mustEscape, version, types, encoding);
+            return GetVCardString(key, value, mustEscape, version, types, encoding, charset);
         }
 
-        public static string GetVCardString(string key, string value, bool mustEscape, VCardVersion version, string[] types, string encoding = "")
+        public static string GetVCardString(string key, string value, bool mustEscape, VCardVersion version, string[] types, Encoding encoding, Encoding charset )
         {
             if (string.IsNullOrWhiteSpace(key))
             {
@@ -44,9 +45,13 @@ namespace MixERP.Net.VCards.Serializer
                 line = line + ";" + type;
             }
 
-            if (!string.IsNullOrWhiteSpace(encoding))
+            if (encoding != null)
             {
-                line = line + $";ENCODING={encoding}";
+                line = line + $";ENCODING={encoding.HeaderName}";
+            }
+            if (charset != null)
+            {
+                line = line + $";CHARSET={charset.HeaderName}";
             }
 
             line = line + ":" + value + Environment.NewLine;

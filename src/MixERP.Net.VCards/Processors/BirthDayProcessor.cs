@@ -11,7 +11,7 @@ namespace MixERP.Net.VCards.Processors
                 return string.Empty;
             }
 
-            return DateTimeProcessor.Serialize(vcard.BirthDay, "BDAY", vcard.Version);
+            return DateTimeProcessor.Serialize(vcard.BirthDay, "BDAY", vcard.Version, vcard.Encoding, vcard.Charset);
         }
 
         public static void Parse(Token token, ref VCard vcard)

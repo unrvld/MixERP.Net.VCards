@@ -46,7 +46,8 @@ namespace MixERP.Net.VCards.Processors
                     key = key + ";PREF=" + impp.Preference;
                 }
 
-                builder.Append(DefaultSerializer.GetVCardString(key, impp.Address.ToString(), false, vcard.Version));
+                builder.Append(DefaultSerializer.GetVCardString(key, impp.Address.ToString(), false, vcard.Version,
+                    vcard.Encoding, vcard.Charset));
             }
 
             return builder.ToString();

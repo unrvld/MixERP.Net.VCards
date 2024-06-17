@@ -21,7 +21,7 @@ namespace MixERP.Net.VCards.Processors
                 return string.Empty;
             }
 
-            return UrlProcessor.SerializeLinks(vcard.CalendarAddresses, "CALURI", vcard.Version);
+            return UrlProcessor.SerializeLinks(vcard.CalendarAddresses, "CALURI", vcard.Version, vcard.Encoding, vcard.Charset);
         }
 
         public static void Parse(Token token, ref VCard vcard)

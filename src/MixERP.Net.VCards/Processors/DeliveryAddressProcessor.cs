@@ -22,7 +22,8 @@ namespace MixERP.Net.VCards.Processors
 
             const string key = "LABEL";
 
-            builder.Append(GroupProcessor.Serialize(key, vcard.Version, type, true, vcard.DeliveryAddress.Address.Escape()));
+            builder.Append(GroupProcessor.Serialize(key, vcard.Version, type, vcard.Encoding, vcard.Charset, true,
+                vcard.DeliveryAddress.Address.Escape()));
 
             return builder.ToString();
         }

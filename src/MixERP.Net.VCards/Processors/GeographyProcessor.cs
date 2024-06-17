@@ -12,7 +12,8 @@ namespace MixERP.Net.VCards.Processors
                 return string.Empty;
             }
 
-            return GroupProcessor.Serialize("GEO", vcard.Version, string.Empty, false, vcard.Longitude.ToString("N2"), vcard.Latitude.ToString("N2"));
+            return GroupProcessor.Serialize("GEO", vcard.Version, string.Empty, encoding: vcard.Encoding, charset:vcard.Charset, false, 
+                vcard.Longitude.ToString("N2"), vcard.Latitude.ToString("N2"));
         }
 
         public static void Parse(Token token, ref VCard vcard)

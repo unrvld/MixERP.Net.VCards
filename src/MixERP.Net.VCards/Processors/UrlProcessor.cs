@@ -41,13 +41,13 @@ namespace MixERP.Net.VCards.Processors
                     }
                 }
 
-                builder.Append(GroupProcessor.Serialize(key, vcard.Version, type, false, url));
+                builder.Append(GroupProcessor.Serialize(key, vcard.Version, type, encoding: vcard.Encoding, charset:vcard.Charset,false, url));
             }
 
             return builder.ToString();
         }
 
-        public static string SerializeLinks(IEnumerable<Link> links, string key, VCardVersion version)
+        public static string SerializeLinks(IEnumerable<Link> links, string key, VCardVersion version, Encoding encoding, Encoding charset)
         {
             var builder = new StringBuilder();
             if (links == null)
@@ -70,7 +70,7 @@ namespace MixERP.Net.VCards.Processors
 
                 memberKey = memberKey + ";PREF=" + preference;
 
-                builder.Append(DefaultSerializer.GetVCardString(memberKey, link.Url.ToString(), false, version));
+                builder.Append(DefaultSerializer.GetVCardString(memberKey, link.Url.ToString(), false, version, encoding, charset));
             }
 
             return builder.ToString();

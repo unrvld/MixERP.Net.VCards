@@ -43,7 +43,7 @@ namespace MixERP.Net.VCards.Processors
                     }
                 }
 
-                builder.Append(GroupProcessor.Serialize(key, vcard.Version, type, true, phone.Number));
+                builder.Append(GroupProcessor.Serialize(key, vcard.Version, type, encoding: vcard.Encoding, charset:vcard.Charset,true,phone.Number));
             }
 
             return builder.ToString();

@@ -38,7 +38,7 @@ namespace MixERP.Net.VCards.Processors
                     key = key + ";PREF=" + relation.Preference;
                 }
 
-                builder.Append(DefaultSerializer.GetVCardString(key, relation.RelationUri.ToString(), false, vcard.Version));
+                builder.Append(DefaultSerializer.GetVCardString(key, relation.RelationUri.ToString(), false, vcard.Version, encoding: vcard.Encoding, charset:vcard.Charset));
             }
 
             return builder.ToString();

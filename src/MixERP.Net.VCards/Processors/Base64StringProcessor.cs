@@ -58,7 +58,7 @@ namespace MixERP.Net.VCards.Processors
                 encoding = string.Empty;
             }
 
-            return DefaultSerializer.GetVCardString(key, value, false, version, type, encoding);
+            return DefaultSerializer.GetVCardString(key, value, false, version, null, null, type);
         }
     }
 }

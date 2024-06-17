@@ -16,7 +16,7 @@ namespace MixERP.Net.VCards.Processors
             }
 
             string classification = ClassificationLookup.ToVCardString(vcard.Classification);
-            return DefaultSerializer.GetVCardString("CLASS", classification, true, vcard.Version);
+            return DefaultSerializer.GetVCardString("CLASS", classification, true, vcard.Version, encoding:vcard.Encoding, charset:vcard.Charset);
         }
 
         public static void Parse(Token token, ref VCard vcard)

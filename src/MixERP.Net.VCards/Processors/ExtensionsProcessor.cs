@@ -26,7 +26,7 @@ namespace MixERP.Net.VCards.Processors
                         continue;
                     }
 
-                    var vcardString = DefaultSerializer.GetVCardString(key, value, true, vcard.Version);
+                    var vcardString = DefaultSerializer.GetVCardString(key, value, true, vcard.Version, encoding: vcard.Encoding, charset:vcard.Charset);
                     builder.Append(vcardString);
                 }
             }

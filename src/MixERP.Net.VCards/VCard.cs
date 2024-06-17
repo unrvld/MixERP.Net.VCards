@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 using MixERP.Net.VCards.Models;
 using MixERP.Net.VCards.Types;
 
@@ -7,6 +8,8 @@ namespace MixERP.Net.VCards
 {
     public class VCard
     {
+        public Encoding Encoding { get; set; }
+        public Encoding Charset { get; set; }
         #region v2.1 https://www.imc.org/pdi/vcard-21.txt
 
         /// <summary>

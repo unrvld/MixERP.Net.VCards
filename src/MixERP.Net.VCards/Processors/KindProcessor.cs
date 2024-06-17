@@ -15,7 +15,7 @@ namespace MixERP.Net.VCards.Processors
                 return string.Empty;
             }
 
-            return DefaultSerializer.GetVCardString("KIND", vcard.Kind.ToVCardString(), true, vcard.Version);
+            return DefaultSerializer.GetVCardString("KIND", vcard.Kind.ToVCardString(), true, vcard.Version, encoding: vcard.Encoding, charset:vcard.Charset);
         }
 
         public static void Parse(Token token, ref VCard vcard)
