@@ -11,10 +11,16 @@ namespace MixERP.Net.VCards.Serializer
         public static string GetVCardString(string key, string value, bool mustEscape, VCardVersion version, Encoding encoding, Encoding charset, string type = "")
         {
             string[] types = {type};
+            return GetVCardString(key, value, mustEscape, version, types, encoding?.HeaderName, charset);
+        }
+
+        public static string GetVCardString(string key, string value, bool mustEscape, VCardVersion version, string encoding, Encoding charset, string type = "")
+        {
+            string[] types = {type};
             return GetVCardString(key, value, mustEscape, version, types, encoding, charset);
         }
 
-        public static string GetVCardString(string key, string value, bool mustEscape, VCardVersion version, string[] types, Encoding encoding, Encoding charset )
+        public static string GetVCardString(string key, string value, bool mustEscape, VCardVersion version, string[] types, string encoding, Encoding charset )
         {
             if (string.IsNullOrWhiteSpace(key))
             {
@@ -45,9 +51,9 @@ namespace MixERP.Net.VCards.Serializer
                 line = line + ";" + type;
             }
 
-            if (encoding != null)
+            if (!string.IsNullOrWhiteSpace(encoding))
             {
-                line = line + $";ENCODING={encoding.HeaderName}";
+                line = line + $";ENCODING={encoding}";
             }
             if (charset != null)
             {
