@@ -18,7 +18,7 @@ namespace MixERP.Net.VCards.Processors
                 return string.Empty;
             }
 
-            return DateTimeProcessor.Serialize(vcard.Anniversary, "ANNIVERSARY", vcard.Version);
+            return DateTimeProcessor.Serialize(vcard.Anniversary, "ANNIVERSARY", vcard.Version, vcard.Encoding, vcard.Charset);
         }
 
 

@@ -22,7 +22,7 @@ namespace MixERP.Net.VCards.Processors
 
             string source = vcard.Source.ToString();
 
-            return DefaultSerializer.GetVCardString("SOURCE", source, false, vcard.Version);
+            return DefaultSerializer.GetVCardString("SOURCE", source, false, vcard.Version, vcard.Encoding, vcard.Charset);
         }
 
         public static void Parse(Token token, ref VCard vcard)

@@ -1,4 +1,5 @@
-﻿using MixERP.Net.VCards.Types;
+﻿using System.Collections.Generic;
+using MixERP.Net.VCards.Types;
 
 namespace MixERP.Net.VCards.Models
 {
@@ -10,7 +11,7 @@ namespace MixERP.Net.VCards.Models
     /// </summary>
     public sealed class Telephone
     {
-        public TelephoneType Type { get; set; }
+        public IEnumerable<TelephoneType> Types { get; set; }
         public string Number { get; set; }
         public int Preference { get; set; }
     }

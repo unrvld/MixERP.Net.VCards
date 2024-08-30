@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 using MixERP.Net.VCards.Models;
 using MixERP.Net.VCards.Types;
 
@@ -7,6 +8,8 @@ namespace MixERP.Net.VCards
 {
     public class VCard
     {
+        public Encoding Encoding { get; set; }
+        public Encoding Charset { get; set; }
         #region v2.1 https://www.imc.org/pdi/vcard-21.txt
 
         /// <summary>
@@ -131,7 +134,7 @@ namespace MixERP.Net.VCards
         /// </summary>
         public DateTime? LastRevision { get; set; }
 
-        public Uri Url { get; set; }
+        public IEnumerable<Link> Urls { get; set; }
 
         /// <summary>
         ///     <para>
@@ -294,12 +297,12 @@ namespace MixERP.Net.VCards
         ///     Specifies the calendar user addresses [RFC5545] to which a scheduling request [RFC5546] should be sent for the
         ///     object represented by the vCard.
         /// </summary>
-        public IEnumerable<Uri> CalendarUserAddresses { get; set; }
+        public IEnumerable<Link> CalendarUserAddresses { get; set; }
 
         /// <summary>
         ///     Specifies the URI for calendars associated with the object represented by the vCard.
         /// </summary>
-        public IEnumerable<Uri> CalendarAddresses { get; set; }
+        public IEnumerable<Link> CalendarAddresses { get; set; }
 
         #endregion
 

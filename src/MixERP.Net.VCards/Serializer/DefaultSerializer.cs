@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Text;
 using MixERP.Net.VCards.Extensions;
 using MixERP.Net.VCards.Types;
 
@@ -7,13 +8,19 @@ namespace MixERP.Net.VCards.Serializer
 {
     public static class DefaultSerializer
     {
-        public static string GetVCardString(string key, string value, bool mustEscape, VCardVersion version, string type = "", string encoding = "")
+        public static string GetVCardString(string key, string value, bool mustEscape, VCardVersion version, Encoding encoding, Encoding charset, string type = "")
         {
             string[] types = {type};
-            return GetVCardString(key, value, mustEscape, version, types, encoding);
+            return GetVCardString(key, value, mustEscape, version, types, encoding?.HeaderName, charset);
         }
 
-        public static string GetVCardString(string key, string value, bool mustEscape, VCardVersion version, string[] types, string encoding = "")
+        public static string GetVCardString(string key, string value, bool mustEscape, VCardVersion version, string encoding, Encoding charset, string type = "")
+        {
+            string[] types = {type};
+            return GetVCardString(key, value, mustEscape, version, types, encoding, charset);
+        }
+
+        public static string GetVCardString(string key, string value, bool mustEscape, VCardVersion version, string[] types, string encoding, Encoding charset )
         {
             if (string.IsNullOrWhiteSpace(key))
             {
@@ -47,6 +54,10 @@ namespace MixERP.Net.VCards.Serializer
             if (!string.IsNullOrWhiteSpace(encoding))
             {
                 line = line + $";ENCODING={encoding}";
+            }
+            if (charset != null)
+            {
+                line = line + $";CHARSET={charset.HeaderName}";
             }
 
             line = line + ":" + value + Environment.NewLine;

@@ -34,7 +34,7 @@ namespace MixERP.Net.VCards.Processors
                 return string.Empty;
             }
 
-            return DefaultSerializer.GetVCardString("TZ", timeZone, false, vcard.Version);
+            return DefaultSerializer.GetVCardString("TZ", timeZone, false, vcard.Version, vcard.Encoding, vcard.Charset);
         }
 
         //Todo: verify the correctness of this function

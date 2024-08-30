@@ -12,7 +12,8 @@ namespace MixERP.Net.VCards.Processors
                 return string.Empty;
             }
 
-            return GroupProcessor.Serialize("ORG", vcard.Version, string.Empty, false, vcard.Organization, vcard.OrganizationalUnit);
+            return GroupProcessor.Serialize("ORG", vcard.Version, string.Empty, vcard.Encoding, vcard.Charset, false,
+                vcard.Organization, vcard.OrganizationalUnit);
         }
 
         public static void Parse(Token token, ref VCard vcard)

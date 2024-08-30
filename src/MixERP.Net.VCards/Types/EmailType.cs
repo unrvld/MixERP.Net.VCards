@@ -74,6 +74,7 @@ namespace MixERP.Net.VCards.Types
         ///     Indicates X.400 service.
         /// </summary>
         // ReSharper disable once InconsistentNaming
-        X400
+        X400, 
+        Internet
     }
 }

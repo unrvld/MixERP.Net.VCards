@@ -8,7 +8,7 @@ namespace MixERP.Net.VCards.Processors
     {
         public static string Serialize(VCard vcard)
         {
-            return DefaultSerializer.GetVCardString("VERSION", vcard.Version.ToVCardString(), false, vcard.Version);
+            return DefaultSerializer.GetVCardString("VERSION", vcard.Version.ToVCardString(), false, vcard.Version, encoding:vcard.Encoding, charset: vcard.Charset);
         }
 
         public static void Parse(Token token, ref VCard vcard)

@@ -19,7 +19,7 @@ namespace MixERP.Net.VCards.Processors
                 return string.Empty;
             }
 
-            return DefaultSerializer.GetVCardString("NICKNAME", vcard.NickName, false, vcard.Version);
+            return DefaultSerializer.GetVCardString("NICKNAME", vcard.NickName, false, vcard.Version, vcard.Encoding, vcard.Charset);
         }
 
         public static void Parse(Token token, ref VCard vcard)

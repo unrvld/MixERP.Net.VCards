@@ -12,7 +12,7 @@ namespace MixERP.Net.VCards.Processors
                 return string.Empty;
             }
 
-            return DefaultSerializer.GetVCardString("NOTE", vcard.Note, true, vcard.Version);
+            return DefaultSerializer.GetVCardString("NOTE", vcard.Note, true, vcard.Version, encoding: vcard.Encoding, charset:vcard.Charset);
         }
 
         public static void Parse(Token token, ref VCard vcard)

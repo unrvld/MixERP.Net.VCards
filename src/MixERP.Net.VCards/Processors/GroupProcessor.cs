@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Text;
 using MixERP.Net.VCards.Extensions;
 using MixERP.Net.VCards.Serializer;
 using MixERP.Net.VCards.Types;
@@ -7,7 +8,7 @@ namespace MixERP.Net.VCards.Processors
 {
     public static class GroupProcessor
     {
-        public static string Serialize(string key, VCardVersion version, string type, bool mustEscape = false, params string[] members)
+        public static string Serialize(string key, VCardVersion version, string type,  Encoding encoding, Encoding charset, bool mustEscape = false, params string[] members)
         {
             if(members == null || members.Count() == 0)
             {
@@ -15,7 +16,7 @@ namespace MixERP.Net.VCards.Processors
             }
 
             string value = string.Join(";", members.Select(x => mustEscape ? x.Escape() : x));
-            return DefaultSerializer.GetVCardString(key, value, false, version, type);
+            return DefaultSerializer.GetVCardString(key, value, false, version, encoding, charset, type);
         }
     }
 }

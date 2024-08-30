@@ -26,7 +26,12 @@ namespace MixERP.Net.VCards.Processors
                     continue;
                 }
 
-                string type = phone.Type.ToVCardString(vcard.Version);
+                string type = string.Empty;
+                foreach (var stype in phone.Types)
+                {
+                    type += stype.ToVCardString(vcard.Version) + ";";
+                }
+                
 
                 string key = "TEL";
 
@@ -38,7 +43,7 @@ namespace MixERP.Net.VCards.Processors
                     }
                 }
 
-                builder.Append(GroupProcessor.Serialize(key, vcard.Version, type, true, phone.Number));
+                builder.Append(GroupProcessor.Serialize(key, vcard.Version, type, encoding: vcard.Encoding, charset:vcard.Charset,true,phone.Number));
             }
 
             return builder.ToString();
@@ -56,7 +61,7 @@ namespace MixERP.Net.VCards.Processors
             var type = token.AdditionalKeyMembers.FirstOrDefault(x => x.Key == "TYPE");
 
             telephone.Preference = preference.Value.ConvertTo<int>();
-            telephone.Type = TelephoneTypeLookup.Parse(type.Value);
+            telephone.Types = TelephoneTypeLookup.Parse(type.Value);
             telephone.Number = token.Values[0];
 
             var telephones = (List<Telephone>) vcard.Telephones ?? new List<Telephone>();

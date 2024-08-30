@@ -2,6 +2,7 @@
 using MixERP.Net.VCards.Types;
 using System;
 using System.Globalization;
+using System.Text;
 
 namespace MixERP.Net.VCards.Processors
 {
@@ -37,11 +38,11 @@ namespace MixERP.Net.VCards.Processors
             "---dd"
         };
 
-        public static string Serialize(DateTime? value, string key, VCardVersion version)
+        public static string Serialize(DateTime? value, string key, VCardVersion version, Encoding encoding, Encoding charset)
         {
             string serializedValue = value?.ToString("o") ?? string.Empty;
 
-            return string.IsNullOrWhiteSpace(serializedValue) ? string.Empty : DefaultSerializer.GetVCardString(key, serializedValue, false, version);
+            return string.IsNullOrWhiteSpace(serializedValue) ? string.Empty : DefaultSerializer.GetVCardString(key, serializedValue, false, version, encoding:encoding, charset:charset);
         }
 
         public static DateTime? Parse(string value)

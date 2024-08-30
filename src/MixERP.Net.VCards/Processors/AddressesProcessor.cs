@@ -10,7 +10,7 @@ namespace MixERP.Net.VCards.Processors
 {
     public static class AddressesProcessor
     {
-        private static string Serialize(Address address, VCardVersion version)
+        private static string Serialize(Address address, VCardVersion version, Encoding encoding, Encoding charset)
         {
             string type = address.Type.ToVCardString();
 
@@ -39,7 +39,9 @@ namespace MixERP.Net.VCards.Processors
                 }
             }
 
-            return GroupProcessor.Serialize(key, version, type, true, address.PoBox, address.ExtendedAddress, address.Street, address.Locality, address.Region, address.PostalCode, address.Country);
+            return GroupProcessor.Serialize(key, version, type, encoding, charset, true, address.PoBox,
+                address.ExtendedAddress, address.Street, address.Locality, address.Region, address.PostalCode,
+                address.Country);
         }
 
         public static void Parse(Token token, ref VCard vcard)
@@ -133,7 +135,7 @@ namespace MixERP.Net.VCards.Processors
 
             foreach (var address in vcard.Addresses)
             {
-                builder.Append(Serialize(address, vcard.Version));
+                builder.Append(Serialize(address, vcard.Version, vcard.Encoding,vcard.Charset));
             }
 
             return builder.ToString();
