@@ -12,9 +12,12 @@ namespace MixERP.Net.VCards.Processors
     {
         private static string Serialize(Address address, VCardVersion version, Encoding encoding, Encoding charset)
         {
-            string type = address.Type.ToVCardString();
+            if(address== null)
+                return string.Empty;
 
-            string key = "ADR";
+            var type = address.Type.ToVCardString();
+
+            var key = "ADR";
 
             if (version == VCardVersion.V4)
             {
